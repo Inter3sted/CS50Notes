@@ -252,8 +252,6 @@ void meow(int n)
     }
 }
 ```
-
-```
 # Data Types and Variables
 ### `int`
 - Stores integers.
@@ -351,153 +349,120 @@ Using variables
         - Inequality (x != y)
     - It's a common mistake to use the assignment operator (=) when you intend to use the equality operator (==).
 # Conditionals
-    - Conditional expressions allow your programs to make decisions and take different forks in the road, depending on the values of variables or user input.
-    - C provides a few different ways to implement conditional expressions (also known as branches) in your programs, some of which likely look familiar from Scratch.
-if (boolean-expression) { 
 
-} 
- - If the boolean-expression evaluates to true, all lines of code between the curly braces will execute in order from top-to-bottom.
- - If the boolean-expression evaluates to false, those lines of code will not execute.
-if (boolean-expression) { 
+- Conditional expressions allow your programs to make decisions and take different forks in the road, depending on the values of variables or user input.  
+- C provides a few different ways to implement conditional expressions (also known as branches) in your programs, some of which likely look familiar from Scratch.  
 
-} 
-else { 
+---
 
+## `if` Statements
+
+```
+if (boolean-expression) {
+    // code runs if expression is true
 }
-- If the boolean-expression evaluates to true, all lines of code between the first set of curly braces will execute in order from top-to-bottom.
-- If the boolean-expression evaluates to false, all lines of code between the second set of curly braces will execute in order from top-to-bottom.
+```
+- If the boolean-expression evaluates to true, all lines of code between the curly braces will execute in order from top-to-bottom.
+- If the boolean-expression evaluates to false, those lines of code will not execute.
 
-if (boolean-expr1) 
-{ 
-    // first branch 
-} 
-else if (boolean-expr2) 
-{ 
-    // second branch 
-} else if (boolean-expr3) 
-{ 
-    // third branch 
-} 
-else 
-{ 
-    // fourth branch
- }
- - In C, it is possible to create an if–else if-else chain.
-     - In Scratch, this required nesting blocks.
- - As you would expect, each branch is mutually exclusive. 
-if (boolean-expr1) 
-{ 
-    // first branch   
-} 
-if (boolean-expr2) 
-{ 
-    // second branch 
-} 
-if (boolean-expr3) 
-{ 
-    // third branch 
-} 
-else 
-{ 
+### if ... else
+```
+if (boolean-expression) {
+    // first branch
+} else {
+    // second branch
+}
+```
+- If the boolean-expression is true, the first branch executes.
+- If it’s false, the second branch executes.
+
+### if ... else if ... else
+```
+if (boolean-expr1) {
+    // first branch
+} else if (boolean-expr2) {
+    // second branch
+} else if (boolean-expr3) {
+    // third branch
+} else {
     // fourth branch
 }
-- It is also possible to create a chain of non-mutually exclusive branches. 
+```
+- In C, it is possible to create an if – else if – else chain.
+- In Scratch, this required nesting blocks.
+- Each branch is mutually exclusive.
+
+### Non-Mutually Exclusive ifs
+```
+if (boolean-expr1) {
+    // first branch
+}
+if (boolean-expr2) {
+    // second branch
+}
+if (boolean-expr3) {
+    // third branch
+} else {
+    // fourth branch
+}
+```
+- It is also possible to create a chain of non-mutually exclusive branches.
 - In this example, only the third and fourth branches are mutually exclusive. The else binds to the nearest if only.
 
+### switch Statements
+```
 int x = GetInt();
-switch(x)
-{
-     case 1: printf(“One!\n”); 
-     break; 
-     case 2: printf(“Two!\n”); 
-     break; 
-     case 3: printf(“Three!\n”); 
-     break; 
-     default: printf(“Sorry!\n”);
+switch(x) {
+    case 1: printf("One!\n"); 
+            break; 
+    case 2: printf("Two!\n"); 
+            break; 
+    case 3: printf("Three!\n"); 
+            break; 
+    default: printf("Sorry!\n");
 }
+```
 - C’s switch() statement is a conditional statement that permits enumeration of discrete cases, instead of relying on Boolean expressions.
-- It’s important to break; between each case, or you will “fall through” each case (unless that is desired behavior).
+- It’s important to break; between each case, or you will “fall through” each case (unless that is desired).
 
+### Example of Fallthrough
+```
 int x = GetInt(); 
-switch(x) 
-{ 
-    case 5: printf(“Five, ”); 
-    case 4: printf(“Four, ”); 
-    case 3: printf(“Three, ”); 
-    case 2: printf(“Two, ”); 
-    case 1: printf(“One, ”); 
-    default: printf(“Blastoff!\n”); 
+switch(x) { 
+    case 5: printf("Five, "); 
+    case 4: printf("Four, "); 
+    case 3: printf("Three, "); 
+    case 2: printf("Two, "); 
+    case 1: printf("One, "); 
+    default: printf("Blastoff!\n"); 
 }
-- C’s switch() statement is a conditional statement that permits enumeration of discrete cases, instead of relying on Boolean expressions.
-- It’s important to break; between each case, or you will “fall through” each case (unless that is desired behavior)
+```
+= Without break;, execution “falls through” into subsequent cases until a break or the end of the switch.
 
-int x; 
-if (expr) 
-{ 
+### Ternary Operator ?:
+```
+int x;
+if (expr) {
     x = 5;  
-    } 
-else 
-{ 
+} else {
     x = 6; 
 }
-
 and
 
 int x = (expr) ? 5 : 6;
+```
 - These two snippets of code act identically.
-- The ternary operator (?:) is mostly a cute trick, but is useful for writing trivially short conditional branches. Be familiar with it, but know that you won’t need to write it if you don’t want to.
+- The ternary operator (?:) is mostly a shorthand trick, but useful for writing trivially short conditional branches.
+- Be familiar with it, but you don’t need to use it unless you want to.
 
+## Summary
 if (and if-else, and if-else if-…-else)
- - Use Boolean expressions to make decisions.
-Switch
-    - Use discrete cases to make decisions.
-?:
-    - Use to replace a very simple if-else to make your code look fancy.
-# Loops
-    - Loops allow your programs to execute lines of code repeatedly, saving you from needing to copy and paste or otherwise repeat lines of code. 
-    - C provides a few different ways to implement loops in your programs, some of which likely look familiar from Scratch.
-    while (true)
-    {
+Use Boolean expressions to make decisions.
 
-    }
-        - This is what we call an infinite loop. The lines of code between the curly braces will execute repeatedly from top to bottom, until and unless we break out of it (as with a break; statement) or otherwise kill our program.
-    while (boolean-expr)
-    {
+switch
+Use discrete cases to make decisions.
 
-    }
-    - If the boolean-expr evaluates to true, all lines of code between the curly braces will execute repeatedly, in order from top-to-bottom, until boolean-expr evaluates to false.
-    - Somewhat confusingly, the behavior of the Scratch block is reversed, but it is the closest analog.
-    do
-    {
+?: (ternary operator)
+Use to replace a very simple if-else to make your code look concise.
 
-    }
-    while (boolean-expr);
-    - This loop will execute all lines of code between the curly braces once, and then, if the boolean-expr evaluates to true, will go back and repeat that process until boolean-expr evaluates to false.
-    for (int i = 0; i < 10; i++)
-    {
-
-    }
-    - Syntactically unattractive, but for loops are used to repeat the body of a loop a specified number of times, in this example 10.
-    - The process undertaken in a for loop is:
-        - The counter variable(s) (here, i) is set
-        - The Boolean expression is checked.
-            - If it evaluates to true, the body of the loop executes.
-            - If it evaluates to false, the body of the loop does not execute.
-        - The counter variable is incremented, and then the Boolean expression is checked again, etc.
-    for (start; expr; increment) 
-    { 
-
-    }
-    - Syntactically unattractive, but for loops are used to repeat the body of a loop a specified number of times, in this example 10.
-    - The process undertaken in a for loop is:
-            - The statement(s) in start are executed 
-            - The expr is checked.
-            - If it evaluates to true, the body of the loop executes.
-            - If it evaluates to false, the body of the loop does not execute.
-        - The statement(s) in increment are executed, and then the expr is checked again, etc.
-while
-    - Use when you want a loop to repeat an unknown number of times, and possibly not at all. 
-do-while 
-    - Use when you want a loop to repeat an unknown number of times, but at least once. 
-for
-    - Use when you want a loop to repeat a discrete number of times, though you may not know the number at the moment the program is completed.
+---
