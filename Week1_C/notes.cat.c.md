@@ -254,3 +254,250 @@ void meow(int n)
 ```
 
 ```
+# Data Types and Variables
+### `int`
+- Stores integers.
+- Always takes **4 bytes (32 bits)**.
+- Range: `-2^31` to `2^31 - 1`.
+### `unsigned int`
+- Qualifier that disallows negative values.
+- Doubles the positive range compared to `int`.
+- Occasionally used in CS50.
+### `char`
+- Stores **single characters**.
+- Always **1 byte (8 bits)**.
+- Range: `-128` to `127`.
+- Uses **ASCII mapping** to represent characters like `A`, `B`, `C`.
+
+### `float`
+- Stores **floating-point values (real numbers)**.
+- **4 bytes (32 bits)**.
+- Limited precision.
+
+### `double`
+- Stores **floating-point values** with **double precision**.
+- **8 bytes (64 bits)**.
+- Allows more precise real numbers than `float`.
+
+### `void`
+- Not a data type, but a **type specifier**.
+- Functions can have:
+  - `void` return type → return nothing.
+  - `void` parameter list → takes no parameters.
+- Think of it as "nothing."
+
+### `bool`
+- Stores **Boolean values**: `true` or `false`.
+- Requires `#include <cs50.h>`.
+
+### `string`
+- Stores words, sentences, and text.
+- Requires `#include <cs50.h>`.
+
+---
+
+## Creating Variables
+
+    - To create, specify data type of variables and give a name
+    int number;
+    char letter;
+    - if wish to create multiple of same type, specify name once, then list as many as you want
+    int height, width;
+    float sqrt2, sqrt3, pi;
+    - In general, good practice to declare variables when needed.
+Using variables
+    - After variable **declared**, it's no longer necessary to specify variables type. (In fact, doing that leads to unintended consequences)
+    int number; // declaration
+    number = 17; // assignment
+    char letter; // declaration
+    letter = 'H'; // assignment
+    - if declaring and setting value of a variable (sometimes called **initializing**), you can consolidate to one step.
+    int number = 17; // initialization
+    char letter = 'H'; // initialization
+
+## Arithmetic Operators
+    - In C we add (+), subtract (-), multiply (*) and divide (/) numbers.
+    int x = y + 1;
+    x = x * 5;
+    - We also have modulus operator, (%) which gives us remainder when number on left of operator is divided by number on right.
+    int m = 13 % 4; // m is now 1
+    - C provides shorthand way to apply arithmetic operator.
+    x = x * 5;
+    x *= 5;
+    - This works with all five basic arithmetic operators. C provides further shorthand for increments or decrements of a variable by 1:
+    x++;
+    x--;
+## Boolean Expressions
+    - Boolean expressions are for comparing values in C
+    - All expressions in C are either True or False
+    - Result of Boolean expression in other progreamming constructs such as deciding which branch in a **conditional** to take, or determining whether a **loop** should continue to run.
+    - Sometimes when using Bool expressions we use variables of type bool, but we don't have to.
+    - In C, every nonzero value is true, and zero is false.
+    Two main types of Bool expressions: **logical operators** an **relational operators**.
+- Logical operators
+    - Logical AND (&&) is true if and only if both operands are true, otherwise false
+    x true y true (x&&y) true, x true y false (x&&y) false
+- Logical Operators
+    - Logical OR (||) is true if and only if at least one operand is true, otherwise false. x true y true (x||y) true, x true y false (x||y) true, x false y false (x||y) false.
+    - Logical NOT (!) inverts the value of its operand. x true !x false, x false !x true.
+- Relational operators
+    - These behave as you would expect them to, and appear syntactically similar to how you may recall them from elementary arithmetic.
+        - Less than (x < y)
+        - Less than or equal to (x <= y)
+        - Greater than (x > y)
+        - Greater than or equal to (x >= y)
+    - C also tests two variables for equality or inequality
+        - Equality (x == y)
+        - Inequality (x != y)
+    - It's a common mistake to use the assignment operator (=) when you intend to use the equality operator (==).
+# Conditionals
+    - Conditional expressions allow your programs to make decisions and take different forks in the road, depending on the values of variables or user input.
+    - C provides a few different ways to implement conditional expressions (also known as branches) in your programs, some of which likely look familiar from Scratch.
+if (boolean-expression) { 
+
+} 
+ - If the boolean-expression evaluates to true, all lines of code between the curly braces will execute in order from top-to-bottom.
+ - If the boolean-expression evaluates to false, those lines of code will not execute.
+if (boolean-expression) { 
+
+} 
+else { 
+
+}
+- If the boolean-expression evaluates to true, all lines of code between the first set of curly braces will execute in order from top-to-bottom.
+- If the boolean-expression evaluates to false, all lines of code between the second set of curly braces will execute in order from top-to-bottom.
+
+if (boolean-expr1) 
+{ 
+    // first branch 
+} 
+else if (boolean-expr2) 
+{ 
+    // second branch 
+} else if (boolean-expr3) 
+{ 
+    // third branch 
+} 
+else 
+{ 
+    // fourth branch
+ }
+ - In C, it is possible to create an if–else if-else chain.
+     - In Scratch, this required nesting blocks.
+ - As you would expect, each branch is mutually exclusive. 
+if (boolean-expr1) 
+{ 
+    // first branch   
+} 
+if (boolean-expr2) 
+{ 
+    // second branch 
+} 
+if (boolean-expr3) 
+{ 
+    // third branch 
+} 
+else 
+{ 
+    // fourth branch
+}
+- It is also possible to create a chain of non-mutually exclusive branches. 
+- In this example, only the third and fourth branches are mutually exclusive. The else binds to the nearest if only.
+
+int x = GetInt();
+switch(x)
+{
+     case 1: printf(“One!\n”); 
+     break; 
+     case 2: printf(“Two!\n”); 
+     break; 
+     case 3: printf(“Three!\n”); 
+     break; 
+     default: printf(“Sorry!\n”);
+}
+- C’s switch() statement is a conditional statement that permits enumeration of discrete cases, instead of relying on Boolean expressions.
+- It’s important to break; between each case, or you will “fall through” each case (unless that is desired behavior).
+
+int x = GetInt(); 
+switch(x) 
+{ 
+    case 5: printf(“Five, ”); 
+    case 4: printf(“Four, ”); 
+    case 3: printf(“Three, ”); 
+    case 2: printf(“Two, ”); 
+    case 1: printf(“One, ”); 
+    default: printf(“Blastoff!\n”); 
+}
+- C’s switch() statement is a conditional statement that permits enumeration of discrete cases, instead of relying on Boolean expressions.
+- It’s important to break; between each case, or you will “fall through” each case (unless that is desired behavior)
+
+int x; 
+if (expr) 
+{ 
+    x = 5;  
+    } 
+else 
+{ 
+    x = 6; 
+}
+
+and
+
+int x = (expr) ? 5 : 6;
+- These two snippets of code act identically.
+- The ternary operator (?:) is mostly a cute trick, but is useful for writing trivially short conditional branches. Be familiar with it, but know that you won’t need to write it if you don’t want to.
+
+if (and if-else, and if-else if-…-else)
+ - Use Boolean expressions to make decisions.
+Switch
+    - Use discrete cases to make decisions.
+?:
+    - Use to replace a very simple if-else to make your code look fancy.
+# Loops
+    - Loops allow your programs to execute lines of code repeatedly, saving you from needing to copy and paste or otherwise repeat lines of code. 
+    - C provides a few different ways to implement loops in your programs, some of which likely look familiar from Scratch.
+    while (true)
+    {
+
+    }
+        - This is what we call an infinite loop. The lines of code between the curly braces will execute repeatedly from top to bottom, until and unless we break out of it (as with a break; statement) or otherwise kill our program.
+    while (boolean-expr)
+    {
+
+    }
+    - If the boolean-expr evaluates to true, all lines of code between the curly braces will execute repeatedly, in order from top-to-bottom, until boolean-expr evaluates to false.
+    - Somewhat confusingly, the behavior of the Scratch block is reversed, but it is the closest analog.
+    do
+    {
+
+    }
+    while (boolean-expr);
+    - This loop will execute all lines of code between the curly braces once, and then, if the boolean-expr evaluates to true, will go back and repeat that process until boolean-expr evaluates to false.
+    for (int i = 0; i < 10; i++)
+    {
+
+    }
+    - Syntactically unattractive, but for loops are used to repeat the body of a loop a specified number of times, in this example 10.
+    - The process undertaken in a for loop is:
+        - The counter variable(s) (here, i) is set
+        - The Boolean expression is checked.
+            - If it evaluates to true, the body of the loop executes.
+            - If it evaluates to false, the body of the loop does not execute.
+        - The counter variable is incremented, and then the Boolean expression is checked again, etc.
+    for (start; expr; increment) 
+    { 
+
+    }
+    - Syntactically unattractive, but for loops are used to repeat the body of a loop a specified number of times, in this example 10.
+    - The process undertaken in a for loop is:
+            - The statement(s) in start are executed 
+            - The expr is checked.
+            - If it evaluates to true, the body of the loop executes.
+            - If it evaluates to false, the body of the loop does not execute.
+        - The statement(s) in increment are executed, and then the expr is checked again, etc.
+while
+    - Use when you want a loop to repeat an unknown number of times, and possibly not at all. 
+do-while 
+    - Use when you want a loop to repeat an unknown number of times, but at least once. 
+for
+    - Use when you want a loop to repeat a discrete number of times, though you may not know the number at the moment the program is completed.
